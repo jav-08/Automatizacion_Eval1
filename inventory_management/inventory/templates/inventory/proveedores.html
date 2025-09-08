@@ -1,0 +1,44 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+	<a href="{% url 'dashboard' %}" class="btn btn-outline-primary my-3 mx-4">Volver</a>
+
+	<div class="row">
+		<div class="col-md-10 col-12 mx-auto mt-5">
+			<div class="d-flex justify-content-end">
+				<a href="{% url 'agregar-proveedor' %}" class="btn btn-primary">Agregar Proveedor</a>
+			</div>
+
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Correo</th>
+						<th>Teléfono</th>
+						<th>Descripción</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if proveedores|length == 0 %}
+					<tr>
+						<td colspan="5" class="text-center">No hay proveedores registrados</td>
+					</tr>
+					{% endif %}
+
+					{% for proveedor in proveedores %}
+					<tr>
+						<td>{{ proveedor.id }}</td>
+						<td>{{ proveedor.name_p }}</td>
+						<td>{{ proveedor.email_p }}</td>
+						<td>{{ proveedor.number_p }}</td>
+						<td>{{ proveedor.description_p }}</td>
+                        <td><a href="{% url 'editar-proveedor' proveedor.id %}" class="btn btn-outline-secondary">Editar</a></td>
+						<td><a href="{% url 'eliminar-proveedor' proveedor.id %}" class="btn btn-secondary">Eliminar</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock content %}

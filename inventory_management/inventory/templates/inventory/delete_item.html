@@ -1,0 +1,19 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+	<div>
+		<a href="{% url 'dashboard' %}" class="btn btn-outline-primary my-3 mx-4">Atras</a>
+		<div class="row">
+			<form method="POST" class="col-sm-11 col-md-4 mx-auto mt-5">
+				{% csrf_token %}
+				<h1 class="fw-light">Eliminar el producto "{{ item.name }}"?</h1>
+				<p class="fw-light">El cambio es irreversible</p>
+
+				<div>
+					<button class="btn btn-secondary">Eliminar</button>
+           			 <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Atras</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock content %}
